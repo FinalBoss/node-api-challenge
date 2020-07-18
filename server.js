@@ -1,8 +1,7 @@
 const express = require("express");
 const server = express();
-
-const projectRouter = require('./project.js');
-const actionRouter = require('./action.js');
+const projectRouter = require('./project/project');
+const actionRouter = require('./action/action');
 
 
 
