@@ -4,18 +4,15 @@ const Project = require("../data/helpers/projectModel");
 
 const router = express.Router();
 
+router.get('/:id/actions', (req,res) => {
+    Project.getProjectActions(req.params.id)
+    .then(pro => {
+        res.status(200).json(pro)})
+    .catch(err => {
+        res.status(500).json({message: "The Actions can not be posted", err})
+    })
+    })
 
-// router.get('/:id', (req, res) => {
-//     Project.getProjectActions(req.params.id)
-//     .then(pro => {
-//     res.status(200).json(pro)
-//   })
-//   .catch(err => {
-//     console.log(err);
-//     res.status(500).json({
-//       message: 'Error getting the Projects'
-//     })
-// })
 
 
 router.get('/', (req, res) =>{
@@ -42,7 +39,7 @@ router.post('/', (req, res) =>{
  });
 
 router.delete('/:id', (req, res) => {
-    Action.remove(req.params.id)
+    Project.remove(req.params.id)
     .then(count => {
         if(count > 0){
             res.status(200).json({ message: "The project is deleted"});
